@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Gửi thông báo</title>
+<link rel="stylesheet" th:href="@{/styles.css}" />
+<style type="text/css">
+	.start{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<h1>HỆ THỐNG TÍNH TIỀN ĐIỆN</h1>
+	<h3>Gửi thông báo</h3>
+
+	<form action="/notification/send" method="post">
+		<table>
+			<tr>
+				<td><label for="receiver">To:</label></td>
+				<td colspan="2"><input autofocus="autofocus" id="receiver" size="30" type="text" list="emails" name="receiverEmail" th:value="${receiverEmail}" 
+				required="required"><span class="start">*</span><i><span th:text="${message}"></span></i></td>
+			</tr>
+			<tr>
+				<td><label for="subject">Subject:</label></td>
+				<td colspan="2"><input id="subject" size="30" type="text" name="subject" th:value=${subject} required="required">
+				<span class="start">*</span>
+				</td>
+			</tr>
+			<tr>
+				<td><br><br></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2"><textarea rows="20" cols="50" name="body" th:text="${body}" required="required"></textarea>
+				<span class="start">*</span></td>
+				<td><input type="hidden"> </td>
+			</tr>
+			<tr>
+				<td> </td>
+				<td><input type="submit" value="Send"></td>
+				<td><button onclick="window.location='/';return false;">Cancel</button></td>
+			</tr>
+			<tr>
+				<td> </td>
+				<td><i><span class="start">(*) Bắt buộc</span></i></td>
+			</tr>
+		</table>
+	</form>
+	
+	<datalist id="emails">
+		<option>All</option>
+		<option th:each="customer: ${customers}" th:text="${customer.email}"></option>
+	</datalist>
+</body>
+</html>

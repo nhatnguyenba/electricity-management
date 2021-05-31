@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thêm Admin</title>
+<link rel="stylesheet" th:href="@{/styles.css}" />
+
+<style type="text/css">
+	.start{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<form method="POST" th:action="@{/admin}"
+		th:object="${admin}">
+		<h1>Thêm một admin mới!</h1>
+		<h3>Nhập thông tin admin.</h3>
+		<table cellspacing="5" border="0">
+			<tr>
+				<td align="right"><label for="name">Tên Admin <span class="start">*</span></label></td>
+				<td align="right" colspan="2"><input autofocus="autofocus" size="35" type="text" th:field="*{name}" required="required"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2"><span class="validationError"
+					th:if="${#fields.hasErrors('name')}" th:errors="*{name}">CC
+						Num Error</span></td>
+			</tr>
+			<tr>
+				<td align="right"><label for="address">Địa chỉ <span class="start">*</span></label></td>
+				<td align="right" colspan="2"><input size="35" type="text" th:field="*{address}" required="required"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2"><span class="validationError"
+					th:if="${#fields.hasErrors('address')}" th:errors="*{address}">CC
+						Num Error</span></td>
+			</tr>
+			<tr>
+				<td align="right"><label for="idNumber">Số CMT <span class="start">*</span></label></td>
+				<td align="right" colspan="2"><input size="35" type="text" th:field="*{idNumber}" required="required"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2"><i><span class="validationError"
+					th:if="${#fields.hasErrors('idNumber')}" th:errors="*{idNumber}">CC
+						Num Error</span></i></td>
+			</tr>
+			<tr>
+				<td align="right"><label for="phone">SĐT <span class="start">*</span></label></td>
+				<td align="right" colspan="2"><input size="35" type="text" th:field="*{phone}" required="required"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2"><i><span class="validationError"
+					th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">CC
+						Num Error</span></i></td>
+			</tr>
+			<tr>
+				<td align="right"><label for="email">Email <span class="start">*</span></label></td>
+				<td align="right" colspan="2"><input size="35" type="email" th:field="*{email}" required="required"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2"><span class="validationError"
+					th:if="${#fields.hasErrors('email')}" th:errors="*{email}">CC
+						Num Error</span></td>
+			</tr>
+			<tr>
+				<td align="right"><label for="username">Username <span class="start">*</span></label></td>
+				<td align="right" colspan="2"><input size="35" type="text" th:field="*{username}" required="required"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2"><span class="validationError"
+					th:if="${#fields.hasErrors('username')}" th:errors="*{username}">CC
+						Num Error</span></td>
+			</tr>
+			<tr>
+				<td align="right"><label for="password">Password <span class="start">*</span></label></td>
+				<td align="right" colspan="2"><input size="35" type="text" th:field="*{password}" required="required"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2"><span class="validationError"
+					th:if="${#fields.hasErrors('password')}" th:errors="*{password}">CC
+						Num Error</span></td>
+			</tr>
+			
+			<tr>
+				<td> </td>
+				<td><i><span class="start">(*) Bắt buộc</span></i> </td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><br>
+				<input type="submit" value="Submit"></td>
+				<td><br>
+				<input type="button" value="Cancel"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

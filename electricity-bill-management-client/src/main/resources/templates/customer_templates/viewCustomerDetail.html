@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<style type="text/css">
+	.customer-name{
+		text-transform: uppercase;
+	}
+</style>
+<meta charset="utf-8">
+<title>Chi tiết khách hàng</title>
+</head>
+<body>
+	<h1>HỆ THỐNG TÍNH TIỀN ĐIỆN</h1>
+	
+	<h3>Thông tin khách hàng</h3>
+	
+	<p>
+		<span class="customer-name" th:text="${customer.name}"></span>  <br> <br>
+		<span th:text="'Mã khách hàng: '+${customer.id}"></span>  <br>
+		<span th:text="'Địa chỉ: '+${customer.address}"></span>  <br>
+		<span th:text="'Số CMT: '+${customer.idNumber}"></span>  <br>
+		<span th:text="'SĐT: '+${customer.phone}"></span>  <br>
+		<span th:text="'Email: '+${customer.email}"></span>  <br>
+		<span th:text="'Username: '+${customer.username}"></span>  <br>
+		<span th:text="'Password: '+${customer.password}"></span>  <br>
+	</p>
+	
+	<form action="/electricity/updateElectricityAmount">
+	<input type="hidden" th:value="${customer.id}" name="id">
+	<table>
+		<tr>
+			<td><label for="electricityAmount">Lượng điện tiêu thụ: </label></td>
+			<td><input autofocus="autofocus" type="number" id="electricityAmount" min="0" name="electricityAmount"
+			 th:value=${customer.soDien} required="required"><span>  kWh</span></td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td><input type="submit" value="Save"></td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td th:text="${message}"></td>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Theo dõi danh sách khách hàng</title>
+</head>
+<body>
+	<h1>HỆ THỐNG TÍNH TIỀN ĐIỆN</h1>
+
+	<form th:action="@{/customerList/showList}" method="get">
+	
+		<label for="listType">Kiểu danh sách: </label>
+		<select id="listType" name="listType" autofocus="autofocus">
+			<option th:selected="'1' == ${listType}" value="1">Danh sách nợ tiền</option>
+			<option th:selected="'2' == ${listType}" value="2">Danh sách không nợ tiền</option>
+			<option th:selected="'3' == ${listType}" value="3">Top 100 khách hàng tiêu thụ nhiều điện nhất</option>
+			<option th:selected="'4' == ${listType}" value="4">Top 100 khách hàng tiêu thụ ít điện nhất</option>
+		</select>
+		
+		<input type="submit" value="Show">
+	</form>
+	
+	<br>
+	
+	<table border="1" cellpadding="5">
+		<thead>
+			<tr>
+				<th>Mã khách hàng</th>
+				<th>Tên khách hàng</th>
+				<th>Địa chỉ</th>
+				<th>Số điện thoại</th>
+				<th>Email</th>
+				<th>Số điện tiêu thụ</th>
+				<th>Số tiền nợ</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="customer: ${customers}">
+				<td align="center" th:text="${customer.id}"></td>
+				<td align="center" th:text="${customer.name}"></td>
+				<td align="center" th:text="${customer.address}"></td>
+				<td align="center" th:text="${customer.phone}"></td>
+				<td align="center" th:text="${customer.email}"></td>
+				<td align="center" th:text="${customer.soDien}"></td>
+				<td align="center" th:text="${customer.debt}"></td>
+						
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

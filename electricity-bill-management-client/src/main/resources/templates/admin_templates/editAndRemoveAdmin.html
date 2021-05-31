@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit and remove admin</title>
+</head>
+<body>
+	<h1>HỆ THỐNG TÍNH TIỀN ĐIỆN</h1>
+
+	<form th:action="@{/admin/search}" method="get">
+		<input type="text" autofocus="autofocus" name="keyword" size="35" placeholder="Nhập tên hoặc mã admin"> <input type="submit"
+			value="Search admin">
+	</form>
+	
+	<br>
+	
+	<table border="1" cellpadding="5">
+		<thead>
+			<tr>
+				<th>Mã admin</th>
+				<th>Tên admin</th>
+				<th>Địa chỉ</th>
+				<th>Số điện thoại</th>
+				<th>Email</th>
+				<th colspan="2">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="admin: ${admins}">
+				<td align="center" th:text="${admin.id}"></td>
+				<td align="center" th:text="${admin.name}"></td>
+				<td align="center" th:text="${admin.address}"></td>
+				<td align="center" th:text="${admin.phone}"></td>
+				<td align="center" th:text="${admin.email}"></td>
+				<td><a th:href="@{/admin/edit/{id}(id=${admin.id})}">
+						Edit</a></td>
+				<td><a
+					th:href="@{/admin/delete/{id}(id=${admin.id})}" 
+					onclick="return confirm('Bạn thực sự muốn xóa admin này?');">
+						Remove</a></td>
+						
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

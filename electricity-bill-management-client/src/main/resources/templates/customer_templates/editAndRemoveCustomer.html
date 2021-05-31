@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit and remove hộ cá nhân</title>
+</head>
+<body>
+	<h1>HỆ THỐNG TÍNH TIỀN ĐIỆN</h1>
+
+	<form th:action="@{/customer/search}" method="get">
+		<input type="text" autofocus="autofocus" name="keyword" size="35" placeholder="Nhập tên hoặc mã khách hàng"> <input type="submit"
+			value="Search hộ cá nhân">
+	</form>
+	
+	<br>
+	
+	<table border="1" cellpadding="5">
+		<thead>
+			<tr>
+				<th>Mã khách hàng</th>
+				<th>Tên khách hàng</th>
+				<th>Địa chỉ</th>
+				<th>Số điện thoại</th>
+				<th>Email</th>
+				<th colspan="3">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="customer: ${customers}">
+				<td align="center" th:text="${customer.id}"></td>
+				<td align="center" th:text="${customer.name}"></td>
+				<td align="center" th:text="${customer.address}"></td>
+				<td align="center" th:text="${customer.phone}"></td>
+				<td align="center" th:text="${customer.email}"></td>
+				<td><a th:href="@{/customer/edit/{id}(id=${customer.id})}">
+						Edit</a></td>
+						
+				<td><a
+					th:href="@{/customer/delete/{id}(id=${customer.id})}" 
+					onclick="return confirm('Bạn thực sự muốn xóa khách hàng này?');">
+						Remove</a></td>
+						
+				<td><a th:href="@{/customer/detail/{id}(id=${customer.id})}">
+						Detail</a></td>
+						
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

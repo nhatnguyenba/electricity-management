@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Quản lý điện</title>
+<style type="text/css">
+	.start{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<h1>HỆ THỐNG TÍNH TIỀN ĐIỆN</h1>
+
+	<h3>Quản lý điện</h3>
+
+	<form action="/electricity/updatePriceAndVAT" th:object="${electricity}">
+		<input type="hidden" th:field="*{id}" name>
+		<table border="0">
+			<tr>
+				<td><label for="electricityPrice">Giá điện <span class="start">*</span></label></td>
+				<td colspan="2"><input type="number" autofocus="autofocus"
+				 min="0" id="electricityPrice" th:field="*{price}" required="required">
+				<span>   đ/kWh</span></td>
+			</tr>
+			
+			<tr>
+				<td><label for="vat">Thuế VAT <span class="start">*</span></label></td>
+				<td colspan="2"><input type="number"
+				step="0.01" min="0" id="vat" th:field="*{vat}" required="required">
+				<span>   %</span></td>
+			</tr>
+			<tr>
+				<td> </td>
+				<td><input type="submit" value="Save"></td>
+				<td><input type="button" value="Cancel"></td>
+			</tr>
+			<tr>
+				<td> </td>
+				<td colspan="2" th:text="${message}"></td>
+			</tr>
+			
+			<tr>
+				<td> </td>
+				<td><i><span class="start">(*) Bắt buộc</span></i></td>
+			</tr>
+		</table>
+
+	</form>
+</body>
+</html>
